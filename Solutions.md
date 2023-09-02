@@ -139,7 +139,7 @@ docker-compose -f docker-compose.yaml up
 
 **Dockerfile**
 ```sh
-FROM amazoncorretto:8-alpine3.14
+FROM openjdk:17.0.2-jdk
 EXPOSE 8080
 RUN mkdir /opt/app
 COPY build/libs/docker-exercises-project-1.0-SNAPSHOT.jar /opt/app
