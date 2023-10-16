@@ -22,8 +22,8 @@ public class DatabaseConfig {
         datasource.setUser(user);
         datasource.setServerName(serverName);
         datasource.setDatabaseName(dbName);
-        //datasource.setPort(3306) default config
-        //datasource.setURL("jdbc:mysql://localhost:3306/dbname");
+        datasource.setPort(3306);
+        datasource.setURL("jdbc:mysql://localhost:3306/mydbname");
 
 
     }
