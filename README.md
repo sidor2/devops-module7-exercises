@@ -21,3 +21,19 @@ gradle build
 java -jar ./build/libs/bootcamp-docker-java-mysql-project-1.0-SNAPSHOT.jar
 ```
 </details>
+
+<details>
+<summary>EXERCISE 2: Start Mysql GUI container</summary>
+Now you have a database, you want to be able to see the database data using a UI tool, so you decide to deploy phpmyadmin. Again, you don't want to install it locally, so you want to start it also as a docker container.
+
+1. Start phpmyadmin container using the official image.
+```shell
+docker run --name phpmyadmin -d --link mysql-container:db -p 8081:80 phpmyadmin 
+```
+2. Access phpmyadmin from your browser and test logging in to your Mysql database
+
+3. Start app
+```
+docker run -d -p 8080:8080 --link mysql-container:db -e DB_NAME=mydbname -e DB_USER=myuser -e DB_PWD=mypassword -e DB_SERVER=mysql-container java-app:1.2
+```
+</details>
