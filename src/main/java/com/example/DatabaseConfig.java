@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 @Configuration
 public class DatabaseConfig {
 
@@ -17,13 +16,15 @@ public class DatabaseConfig {
     private String dbName = System.getenv("DB_NAME");
     private MysqlDataSource datasource = new MysqlDataSource();
 
+
+
     public DatabaseConfig() {
         datasource.setPassword(password);
         datasource.setUser(user);
         datasource.setServerName(serverName);
         datasource.setDatabaseName(dbName);
         datasource.setPort(3306);
-        datasource.setURL("jdbc:mysql://localhost:3306/mydbname");
+        datasource.setURL("jdbc:mysql://" + serverName + ":3306/" + dbName);
 
 
     }

@@ -14,6 +14,7 @@ import java.sql.Statement;
 @SpringBootApplication
 public class Application {
 
+
     private final Connection dbConnection;
 
     public Application(Connection dbConnection) {
@@ -27,7 +28,9 @@ public class Application {
 
     @PostConstruct
     public void init()
+
     {
+        printEnvVariables();
         Logger log = LoggerFactory.getLogger(Application.class);
         log.info("Java app started");
 
@@ -41,6 +44,20 @@ public class Application {
         }
 
     }
+
+    private void printEnvVariables() {
+        String dbName = System.getenv("DB_NAME");
+        String dbUser = System.getenv("DB_USER");
+        String dbPwd = System.getenv("DB_PWD");
+        String dbServer = System.getenv("DB_SERVER");
+
+//        Logger log = LoggerFactory.getLogger(Application.class);
+//        log.info("DB_NAME: " + dbName);
+//        log.info("DB_USER: " + dbUser);
+//        log.info("DB_PWD: " + dbPwd);
+//        log.info("DB_SERVER: " + dbServer);
+    }
+
 
     private void createTable(Statement stmt) throws SQLException {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS team_members(" +

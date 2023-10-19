@@ -2,7 +2,7 @@ version: '3'
 
 services:
   java-app:
-    image: java-app:1.0
+    image: java-app:1.6
     container_name: java-app
     environment:
       DB_NAME: "${DB_NAME}"
@@ -10,9 +10,11 @@ services:
       DB_PWD: "${DB_PWD}"
       DB_SERVER: "${DB_SERVER}"
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - mysql
+    networks:
+      - mynetwork
 
   mysql:
     image: mysql:latest
@@ -26,6 +28,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - mynetwork
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -37,7 +42,13 @@ services:
       PMA_PORT: 3306
     ports:
       - "8083:80"
+    networks:
+      - mynetwork
 
 volumes:
   mysql-data:
     driver: local
+
+networks:
+  mynetwork:
+    driver: bridge

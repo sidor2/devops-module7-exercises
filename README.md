@@ -34,6 +34,8 @@ docker run --name phpmyadmin -d --link mysql-container:db -p 8081:80 phpmyadmin
 
 3. Start app
 ```
-docker run -d -p 8080:8080 --link mysql-container:db -e DB_NAME=mydbname -e DB_USER=myuser -e DB_PWD=mypassword -e DB_SERVER=mysql-container java-app:1.2
+docker run -d -p 8080:8080 --link mysql:latest -e DB_NAME=mydbname -e DB_USER=myuser -e DB_PWD=mypassword -e DB_SERVER=mysql java-app:1.3
+
+docker run -d -p 8080:8080 --network devops-module7-exercises_mynetwork -e DB_NAME=mydbname -e DB_USER=myuser -e DB_PWD=mypassword -e DB_SERVER=mysql java-app:1.3
 ```
 </details>
